@@ -15,8 +15,13 @@ class CSGOTM {
 				self.ws = new websocket('wss://wsn.dota2.net/wsn/');
 				self.ws.onopen = x => self.emit('connected');
 				self.ws.on('message', function (message) {
-					message = JSON.parse(message);
-					self.emit(message.type, message.data);
+					if (typeof message === 'string') return;
+					try {
+						message = JSON.parse(message);
+						self.emit(message.type, message.data);
+					} catch (e) {
+						console.error('Cant parse JSON from message: ' + message);
+					}
 				});
 				setInterval(this.ping, 60 * 1000);
 			},
