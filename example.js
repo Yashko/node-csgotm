@@ -16,3 +16,8 @@ market.on('connected', function() {
 market.on('newitems_go', function (item) {
 	console.log(item);
 });
+
+market.api.call('GetMoney', function (err, balance) {
+	if (err) return console.error(err);
+	console.log('Account balance: ' + (balance.money/100) + ' RUB')
+})
