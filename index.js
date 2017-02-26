@@ -51,7 +51,7 @@ class CSGOTM {
 						console.error('Cant parse JSON from message: ' + message);
 					}
 				});
-				//setInterval(this.ping, 60 * 1000);
+				setInterval(this.ping, 60 * 1000);
 			},
 			auth: function (callback) {
 				request.post({url: 'https://market.csgo.com/api/GetWSAuth/?key=' + self.apikey, json: true}, function (err, res, body) {
